@@ -407,6 +407,9 @@
   margin: 0 0 6px;
   font-size: 1.05rem;
   color: var(--brand-navy);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
 }
 
 .form-card-head p {
@@ -435,6 +438,25 @@
   margin: 6px 0 0;
   font-size: 0.78rem;
   color: var(--text-faint);
+}
+
+.field label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.field-optional {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-faint);
+  letter-spacing: 0.02em;
 }
 
 .form-actions {

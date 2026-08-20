@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import FieldLabel from '../../components/admin/FieldLabel.jsx'
 import { api, clearToken } from '../../lib/api.js'
 import { certificateImageUrl } from '../../lib/images.js'
 
@@ -180,7 +181,7 @@ export default function CertificateFormPage() {
           </div>
           <div className="form-grid">
             <div className="field">
-              <label htmlFor="certificateId">Certificate ID</label>
+              <FieldLabel htmlFor="certificateId">Certificate ID</FieldLabel>
               {!isEdit && (
                 <div className="id-mode-toggle" role="group" aria-label="Certificate ID mode">
                   <button
@@ -222,7 +223,7 @@ export default function CertificateFormPage() {
               </p>
             </div>
             <div className="field">
-              <label htmlFor="studentName">Student name</label>
+              <FieldLabel htmlFor="studentName">Student name</FieldLabel>
               <input
                 id="studentName"
                 className="admin-input"
@@ -233,7 +234,9 @@ export default function CertificateFormPage() {
               />
             </div>
             <div className="field">
-              <label htmlFor="studentEmail">Student email</label>
+              <FieldLabel htmlFor="studentEmail" optional>
+                Student email
+              </FieldLabel>
               <input
                 id="studentEmail"
                 type="email"
@@ -244,7 +247,9 @@ export default function CertificateFormPage() {
               />
             </div>
             <div className="field">
-              <label htmlFor="studentContact">Phone / contact</label>
+              <FieldLabel htmlFor="studentContact" optional>
+                Phone / contact
+              </FieldLabel>
               <input
                 id="studentContact"
                 className="admin-input"
@@ -263,7 +268,9 @@ export default function CertificateFormPage() {
           </div>
           <div className="form-grid">
             <div className="field">
-              <label htmlFor="className">Class / cohort</label>
+              <FieldLabel htmlFor="className" optional>
+                Class / cohort
+              </FieldLabel>
               {cohortOptions.length > 0 ? (
                 <select
                   id="className"
@@ -292,7 +299,9 @@ export default function CertificateFormPage() {
               </p>
             </div>
             <div className="field">
-              <label htmlFor="awardDate">Award date</label>
+              <FieldLabel htmlFor="awardDate" optional>
+                Award date
+              </FieldLabel>
               <div className="id-mode-toggle" role="group" aria-label="Award date mode">
                 <button
                   type="button"
@@ -339,7 +348,9 @@ export default function CertificateFormPage() {
               </p>
             </div>
             <div className="field full">
-              <label htmlFor="specialNotes">Notes</label>
+              <FieldLabel htmlFor="specialNotes" optional>
+                Notes
+              </FieldLabel>
               <textarea
                 id="specialNotes"
                 className="admin-input"
@@ -359,12 +370,16 @@ export default function CertificateFormPage() {
           </div>
           <div className="form-grid">
             <div className="field">
-              <label htmlFor="imageFile">Upload image</label>
+              <FieldLabel htmlFor="imageFile" optional>
+                Upload image
+              </FieldLabel>
               <input id="imageFile" type="file" accept="image/*" onChange={handleUpload} />
               <p className="helper">{uploading ? 'Uploading…' : 'PNG, JPG, or WEBP up to 8MB.'}</p>
             </div>
             <div className="field">
-              <label htmlFor="imageUrl">Or image path / URL</label>
+              <FieldLabel htmlFor="imageUrl" optional>
+                Or image path / URL
+              </FieldLabel>
               <input
                 id="imageUrl"
                 className="admin-input"
