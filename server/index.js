@@ -21,6 +21,7 @@ import {
   getDbMode,
   getSettings,
   listCertificates,
+  pingDatabase,
   updateCertificate,
   updateSettings,
 } from '../lib/db.js'
@@ -49,10 +50,12 @@ const upload = multer({
 function createRouter() {
   const router = express.Router()
 
-  router.get('/health', (_req, res) => {
-    res.json({
-      ok: true,
+  router.get('/health', async (_req, res) => {
+    const database = await pingDatabase()
+    res.status(database.ok || getDbMode() === 'file' ? 200 : 503).json({
+      ok: database.ok || getDbMode() === 'file',
       dbMode: getDbMode(),
+      database,
       env: {
         hasDatabaseUrl: Boolean(process.env.DATABASE_URL),
         hasSupabaseDbUrl: Boolean(process.env.SUPABASE_DB_URL),
@@ -75,7 +78,11 @@ function createRouter() {
       return res.json(result)
     } catch (error) {
       console.error(error)
-      return res.status(500).json({ error: 'Login failed.' })
+      return res.status(500).json({
+        error: 'Login failed.',
+        detail: error.message,
+        code: error.code || null,
+      })
     }
   })
 
@@ -92,7 +99,11 @@ function createRouter() {
       return res.json(cert)
     } catch (error) {
       console.error(error)
-      return res.status(500).json({ error: 'Lookup failed.' })
+      return res.status(500).json({
+        error: 'Lookup failed.',
+        detail: error.message,
+        code: error.code || null,
+      })
     }
   })
 
