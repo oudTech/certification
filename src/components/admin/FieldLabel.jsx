@@ -1,8 +1,12 @@
-export default function FieldLabel({ htmlFor, children, optional = false }) {
+export default function FieldLabel({ htmlFor, children, required = false }) {
   return (
     <label htmlFor={htmlFor}>
-      <span>{children}</span>
-      {optional ? <span className="field-optional">Optional</span> : null}
+      {children}
+      {required ? (
+        <span className="field-required" aria-hidden="true">
+          *
+        </span>
+      ) : null}
     </label>
   )
 }

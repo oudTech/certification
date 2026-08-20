@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import FieldLabel from '../../components/admin/FieldLabel.jsx'
 import { api, clearToken } from '../../lib/api.js'
 
 export default function SettingsPage() {
@@ -116,7 +115,7 @@ export default function SettingsPage() {
             </div>
             <div className="form-grid">
               <div className="field">
-                <FieldLabel htmlFor="sitename">Site name</FieldLabel>
+                <label htmlFor="sitename">Site name</label>
                 <input
                   id="sitename"
                   className="admin-input"
@@ -125,7 +124,7 @@ export default function SettingsPage() {
                 />
               </div>
               <div className="field">
-                <FieldLabel htmlFor="site_title">Site title</FieldLabel>
+                <label htmlFor="site_title">Site title</label>
                 <input
                   id="site_title"
                   className="admin-input"
@@ -134,9 +133,7 @@ export default function SettingsPage() {
                 />
               </div>
               <div className="field">
-                <FieldLabel htmlFor="site_url" optional>
-                  Site URL
-                </FieldLabel>
+                <label htmlFor="site_url">Site URL</label>
                 <input
                   id="site_url"
                   className="admin-input"
@@ -145,9 +142,7 @@ export default function SettingsPage() {
                 />
               </div>
               <div className="field">
-                <FieldLabel htmlFor="email_address" optional>
-                  Support email
-                </FieldLabel>
+                <label htmlFor="email_address">Support email</label>
                 <input
                   id="email_address"
                   className="admin-input"
@@ -165,7 +160,7 @@ export default function SettingsPage() {
             </div>
             <div className="form-grid">
               <div className="field">
-                <FieldLabel htmlFor="track_prefix">ID prefix</FieldLabel>
+                <label htmlFor="track_prefix">ID prefix</label>
                 <input
                   id="track_prefix"
                   className="admin-input"
@@ -174,7 +169,7 @@ export default function SettingsPage() {
                 />
               </div>
               <div className="field">
-                <FieldLabel htmlFor="track_num">Numeric length</FieldLabel>
+                <label htmlFor="track_num">Numeric length</label>
                 <input
                   id="track_num"
                   className="admin-input"
@@ -183,7 +178,7 @@ export default function SettingsPage() {
                 />
               </div>
               <div className="field">
-                <FieldLabel htmlFor="allow_print">Allow print</FieldLabel>
+                <label htmlFor="allow_print">Allow print</label>
                 <select
                   id="allow_print"
                   className="admin-input"
@@ -195,9 +190,7 @@ export default function SettingsPage() {
                 </select>
               </div>
               <div className="field">
-                <FieldLabel htmlFor="email_name" optional>
-                  Email from name
-                </FieldLabel>
+                <label htmlFor="email_name">Email from name</label>
                 <input
                   id="email_name"
                   className="admin-input"
@@ -210,9 +203,7 @@ export default function SettingsPage() {
 
           <section className="form-card">
             <div className="form-card-head">
-              <h2>
-                Cohorts <span className="field-optional">Optional</span>
-              </h2>
+              <h2>Cohorts</h2>
               <p>These appear as dropdown options when registering a certificate.</p>
             </div>
             <div className="inline-add">
@@ -247,9 +238,7 @@ export default function SettingsPage() {
 
           <section className="form-card">
             <div className="form-card-head">
-              <h2>
-                Award dates <span className="field-optional">Optional</span>
-              </h2>
+              <h2>Award dates</h2>
               <p>Saved dates for quick selection. Manual date pick is still available on the form.</p>
             </div>
             <div className="inline-add">

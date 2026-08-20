@@ -181,7 +181,9 @@ export default function CertificateFormPage() {
           </div>
           <div className="form-grid">
             <div className="field">
-              <FieldLabel htmlFor="certificateId">Certificate ID</FieldLabel>
+              <FieldLabel htmlFor="certificateId" required>
+                Certificate ID
+              </FieldLabel>
               {!isEdit && (
                 <div className="id-mode-toggle" role="group" aria-label="Certificate ID mode">
                   <button
@@ -223,7 +225,9 @@ export default function CertificateFormPage() {
               </p>
             </div>
             <div className="field">
-              <FieldLabel htmlFor="studentName">Student name</FieldLabel>
+              <FieldLabel htmlFor="studentName" required>
+                Student name
+              </FieldLabel>
               <input
                 id="studentName"
                 className="admin-input"
@@ -234,9 +238,7 @@ export default function CertificateFormPage() {
               />
             </div>
             <div className="field">
-              <FieldLabel htmlFor="studentEmail" optional>
-                Student email
-              </FieldLabel>
+              <FieldLabel htmlFor="studentEmail">Student email</FieldLabel>
               <input
                 id="studentEmail"
                 type="email"
@@ -247,9 +249,7 @@ export default function CertificateFormPage() {
               />
             </div>
             <div className="field">
-              <FieldLabel htmlFor="studentContact" optional>
-                Phone / contact
-              </FieldLabel>
+              <FieldLabel htmlFor="studentContact">Phone / contact</FieldLabel>
               <input
                 id="studentContact"
                 className="admin-input"
@@ -268,9 +268,7 @@ export default function CertificateFormPage() {
           </div>
           <div className="form-grid">
             <div className="field">
-              <FieldLabel htmlFor="className" optional>
-                Class / cohort
-              </FieldLabel>
+              <FieldLabel htmlFor="className">Class / cohort</FieldLabel>
               {cohortOptions.length > 0 ? (
                 <select
                   id="className"
@@ -299,9 +297,7 @@ export default function CertificateFormPage() {
               </p>
             </div>
             <div className="field">
-              <FieldLabel htmlFor="awardDate" optional>
-                Award date
-              </FieldLabel>
+              <FieldLabel htmlFor="awardDate">Award date</FieldLabel>
               <div className="id-mode-toggle" role="group" aria-label="Award date mode">
                 <button
                   type="button"
@@ -348,9 +344,7 @@ export default function CertificateFormPage() {
               </p>
             </div>
             <div className="field full">
-              <FieldLabel htmlFor="specialNotes" optional>
-                Notes
-              </FieldLabel>
+              <FieldLabel htmlFor="specialNotes">Notes</FieldLabel>
               <textarea
                 id="specialNotes"
                 className="admin-input"
@@ -370,16 +364,12 @@ export default function CertificateFormPage() {
           </div>
           <div className="form-grid">
             <div className="field">
-              <FieldLabel htmlFor="imageFile" optional>
-                Upload image
-              </FieldLabel>
+              <FieldLabel htmlFor="imageFile">Upload image</FieldLabel>
               <input id="imageFile" type="file" accept="image/*" onChange={handleUpload} />
               <p className="helper">{uploading ? 'Uploading…' : 'PNG, JPG, or WEBP up to 8MB.'}</p>
             </div>
             <div className="field">
-              <FieldLabel htmlFor="imageUrl" optional>
-                Or image path / URL
-              </FieldLabel>
+              <FieldLabel htmlFor="imageUrl">Or image path / URL</FieldLabel>
               <input
                 id="imageUrl"
                 className="admin-input"
