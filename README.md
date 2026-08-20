@@ -34,38 +34,53 @@ This starts:
 - **Admin dashboard** (`/admin`) — certificates list, create/edit, settings
 - **Print** — prints only the certificate image (not the surrounding page)
 
-## Database & Vercel
+## Database (Supabase Postgres)
 
-The SQL dump (`u663771390_cert.sql`) is **MariaDB/MySQL**. Vercel serverless functions do not ship with a durable local filesystem or long-lived DB connections, so:
+Use **Supabase** for production (works well with Vercel serverless).
 
-### Recommended for Vercel
+### 1. Create the schema
 
-1. **Host MySQL remotely** (best fit for this schema):
-   - Keep Hostinger/cPanel MariaDB, **or**
-   - Move to [PlanetScale](https://planetscale.com), [Railway](https://railway.app), [Aiven](https://aiven.io), or [TiDB Cloud](https://www.pingcap.com/tidb-cloud/)
-2. Set env vars in the Vercel project (see `.env.example`):
-   - `JWT_SECRET`
-   - `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`, `DB_SSL=true`
-   - or a single `DATABASE_URL=mysql://...`
-3. Import `u663771390_cert.sql` into that database.
-4. Deploy the Vite frontend + `/api` serverless routes to Vercel.
+1. Open [Supabase](https://supabase.com) → your project → **SQL Editor**
+2. Paste and run [`supabase/schema.sql`](./supabase/schema.sql)
 
-### Local / demo without MySQL
+That creates `admin`, `settings`, `tracking` (certificates), and `track_update`, and seeds sample data.
 
-If no DB env vars are set, the API uses a **JSON file store** (`.data/store.json`) seeded from the dump. Fine for demos; not for production on Vercel (ephemeral filesystem).
+### 2. Copy the connection string
+
+Supabase → **Project Settings → Database → Connection string → URI**
+
+Prefer the **Transaction pooler** (port **6543**) for Vercel.
+
+### 3. Set Vercel env vars
+
+| Name | Value |
+| --- | --- |
+| `JWT_SECRET` | long random string |
+| `DATABASE_URL` | your Supabase pooler URI |
+
+Optional: `DB_CONNECTION_LIMIT=3`
+
+Redeploy after saving.
+
+### 4. Confirm
+
+`https://YOUR_DOMAIN/api/health` should return:
+
+```json
+{ "ok": true, "dbMode": "postgres" }
+```
+
+**Default admin:** `admin` / `123456` (bcrypt-hashed in the seed — change it after first login)
+
+### Local / demo without Postgres
+
+If no DB env vars are set, the API uses a JSON file store (`.data/store.json`). Fine for demos only.
 
 ### Image uploads on Vercel
 
-Local uploads write to `public/certificates`. On Vercel that filesystem is **not persistent**. For production, point certificate images at:
+Local uploads write to `public/certificates`. On Vercel that filesystem is **not persistent**. For production, store images in **Supabase Storage** (or Blob/CDN) and save the public URL on the certificate record. The admin form already accepts a direct image URL.
 
-- an existing Hostinger/CDN URL, or
-- [Vercel Blob](https://vercel.com/docs/storage/vercel-blob) / S3 / Cloudinary
-
-The admin form already accepts a direct image URL/path.
-
-### Why not Vercel Postgres by default?
-
-Your existing schema and dump are MySQL. Staying on MySQL avoids a migration. If you prefer Neon/Vercel Postgres later, we can port the schema.
+The old MariaDB dump (`u663771390_cert.sql`) is kept for reference only — do not import it into Supabase.
 
 ## Scripts
 

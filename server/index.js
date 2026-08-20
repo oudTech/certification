@@ -50,7 +50,17 @@ function createRouter() {
   const router = express.Router()
 
   router.get('/health', (_req, res) => {
-    res.json({ ok: true, dbMode: getDbMode() })
+    res.json({
+      ok: true,
+      dbMode: getDbMode(),
+      env: {
+        hasDatabaseUrl: Boolean(process.env.DATABASE_URL),
+        hasSupabaseDbUrl: Boolean(process.env.SUPABASE_DB_URL),
+        hasDbHost: Boolean(process.env.DB_HOST),
+        hasJwtSecret: Boolean(process.env.JWT_SECRET),
+        vercelEnv: process.env.VERCEL_ENV || null,
+      },
+    })
   })
 
   router.post('/auth/login', async (req, res) => {
