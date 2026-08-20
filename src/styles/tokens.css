@@ -1,0 +1,95 @@
+/* OudTech brand tokens — scraped from academy.oudtechnologies.com */
+:root {
+  --brand-primary: #064adf;
+  --brand-primary-soft: rgba(6, 74, 223, 0.12);
+  --brand-navy: #02143a;
+  --brand-navy-soft: #0a1f4d;
+  --brand-bg: #f8fafc;
+  --brand-surface: #ffffff;
+  --brand-border: #e4e7ec;
+  --brand-border-strong: #d0d5dd;
+  --text: #02143a;
+  --text-secondary: #344054;
+  --text-muted: #667085;
+  --text-faint: #98a2b3;
+  --success: #039855;
+  --success-bg: #ecfdf3;
+  --danger: #d92d20;
+  --danger-bg: #fef3f2;
+  --warning: #dc6803;
+  --warning-bg: #fffaeb;
+  --info: #064adf;
+  --info-bg: #eff4ff;
+
+  --font: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(2, 20, 58, 0.05);
+  --shadow: 0 8px 24px rgba(2, 20, 58, 0.06);
+  --shadow-primary: 0 12px 28px rgba(6, 74, 223, 0.24);
+  --sidebar-w: 260px;
+  --header-h: 72px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--brand-bg);
+  overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: var(--brand-primary);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
